@@ -1,0 +1,30 @@
+{
+  "name": "jncinet/qihucms-site-help",
+  "description": "qihucms site help.",
+  "keywords": [
+    "qihucms",
+    "site",
+    "help"
+  ],
+  "homepage": "https://www.qihucms.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "zhangye",
+      "email": "y@qilephp.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Qihucms\\SiteHelp\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Qihucms\\SiteHelp\\SiteHelpServiceProvider"
+      ]
+    }
+  }
+}
