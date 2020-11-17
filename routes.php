@@ -18,7 +18,7 @@ Route::group([
     $router->get('help-categories', 'CategoryController@index')->name('help.category.index');
     $router->get('help-categories/{id}', 'CategoryController@show')->name('help.category.show');
     // 文档评论
-    $router->resource('help-replies', 'ReplyController');
+    $router->apiResource('help-replies', 'ReplyController');
 });
 
 // 后台
