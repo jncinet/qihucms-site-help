@@ -127,6 +127,86 @@ $ php artisan vendor:publish --provider="Qihucms\SiteHelp\SiteHelpServiceProvide
 }
 ```
 
+#### 会员回复列表
+
+```
+请求：GET
+地址：/site-help/help-replies?page={$page}&limit={$limit}
+参数：
+int          $page    （选填）页码
+int          $limit   （选填）每页显示的条数
+返回值：
+{
+    "data": [
+        {
+            'id' => 1,
+            'help' => {帮助文档详细},
+            'content' => "评论回复",
+            'reply' => "回复内容",
+            'created_at' => "3天前"
+            'updated_at' => "3天前",
+        },
+        ...
+    ],
+    "meta": {...},
+    "links": {...}
+}
+```
+
+#### 添加回复
+
+```php
+请求：POST
+地址：/site-help/help-replies
+参数：
+{
+    "site_help_id"：1 // 文档ID
+    "content"：'评论内容'
+}
+返回值：
+{
+    'id' => 1,
+    'user' => {会员资料},
+    'content' => "评论回复",
+    'reply' => "回复内容",
+    'created_at' => "3天前"
+    'updated_at' => "3天前",
+}
+```
+
+#### 更新回复
+
+```php
+请求：PAUTH|PUT
+地址：/site-help/help-replies/{id}
+参数：
+{
+    "site_help_id"：1 // 内容ID
+    "content"：'评论内容'
+}
+返回值：
+{
+    status: 'SUCCESS',
+    result: {
+        id: 1
+    }
+}
+```
+
+#### 删除回复
+
+```php
+请求：DELETE
+地址：/site-help/help-replies/{id}
+返回值：
+{
+    status: 'SUCCESS',
+    result: {
+        id: 1
+    }
+}
+```
+
 ## 数据库
 ### 帮助分类表：site_help_categories
 | Field             | Type      | Length    | AllowNull | Default   | Comment   |
