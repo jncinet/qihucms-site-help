@@ -177,7 +177,7 @@ int          $limit   （选填）每页显示的条数
 #### 更新回复
 
 ```php
-请求：PAUTH|PUT
+请求：PATCH|PUT
 地址：/site-help/help-replies/{id}
 参数：
 {
