@@ -106,7 +106,7 @@ class HelpReplyController extends Controller
                     return [$user->id => $user->username];
                 }
             })
-            ->ajax(route('api.article.select.users.q'))
+            ->ajax(route('admin.select.user'))
             ->required();
         $form->UEditor('content', __('site-help::reply.content'));
         $form->UEditor('reply', __('site-help::reply.reply'));
