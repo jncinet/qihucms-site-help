@@ -35,6 +35,35 @@ $ php artisan vendor:publish --provider="Qihucms\SiteHelp\SiteHelpServiceProvide
 ]
 ```
 
+### 帮助文档分类列表
++ 请求方式：GET
++ 请求地址：site-help/help-categories
++ 返回值：
+```
+[
+    {
+        'id': 1,
+        'name': "分类名",
+        'ico': "http://图片地址",
+        'desc': "分类简介",
+    },
+    ...
+]
+```
+
+### 帮助文档详细
++ 请求方式：GET
++ 请求地址：site-help/help-categories/{id={帮助分类ID}
++ 返回值：
+```
+{
+    'id': 1,
+    'name': "分类名",
+    'ico': "http://图片地址",
+    'desc': "分类简介",
+}
+```
+
 ### 帮助文档分页列表
 + 请求方式：GET
 + 请求地址：site-help/helps?id={帮助分类ID，默认为0读取所的文档}&limit={分页条数,可选}&page={页码,可选}
@@ -77,14 +106,17 @@ $ php artisan vendor:publish --provider="Qihucms\SiteHelp\SiteHelpServiceProvide
         'ico': "http://图片地址",
         'desc': "分类简介",
     },
-    'replies': {
-        'id': 1,
-        'user': {"id": 1, "username": "name", ...},
-        'content': "评论回复",
-        'reply': "回复内容",
-        'created_at': "1小时前",
-        'updated_at': "1分钟前",
-    },
+    'replies': [
+        {
+            'id': 1,
+            'user': {"id": 1, "username": "name", ...},
+            'content': "评论回复",
+            'reply': "回复内容",
+            'created_at': "1小时前",
+            'updated_at': "1分钟前",
+        },
+        ...
+    ]
     'title': "标题",
     'desc': "概述",
     'thumbnail': "缩略图地址"
