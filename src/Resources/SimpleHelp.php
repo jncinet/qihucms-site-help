@@ -5,6 +5,7 @@ namespace Qihucms\SiteHelp\Resources;
 use App\Http\Resources\User\User;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class SimpleHelp extends JsonResource
 {
@@ -21,7 +22,7 @@ class SimpleHelp extends JsonResource
             'category' => new HelpCategory($this->category),
             'title' => $this->title,
             'desc' => $this->desc,
-            'thumbnail' => empty($this->thumbnail) ? null : \Storage::url($this->thumbnail),
+            'thumbnail' => empty($this->thumbnail) ? null : Storage::url($this->thumbnail),
             'useful' => $this->useful,
             'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::parse($this->updated_at)->diffForHumans(),

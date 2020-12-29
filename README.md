@@ -21,7 +21,79 @@ $ php artisan vendor:publish --provider="Qihucms\SiteHelp\SiteHelpServiceProvide
 + 帮助回复：site-help/help-replies
 
 ## 接口
-### 
+### 选择帮助文档
++ 请求方式：GET
++ 请求地址：site-help/select-helps?q=文档关键词
++ 返回值：
+```
+[
+    {
+        "id": 1,
+        "text" "文档标题"
+    },
+    ...
+]
+```
+
+### 帮助文档分页列表
++ 请求方式：GET
++ 请求地址：site-help/helps?id={帮助分类ID，默认为0读取所的文档}&limit={分页条数,可选}&page={页码,可选}
++ 返回值：
+```
+{
+    "data": [
+        {
+            'id': 1,
+            'category': {
+                'id': 1,
+                'name': "分类名",
+                'ico': "http://图片地址",
+                'desc': "分类简介",
+            },
+            'title': "标题",
+            'desc': "简介",
+            'thumbnail': "缩略图",
+            'useful': 142, // 有用数
+            'created_at': "3秒前",
+            'updated_at': "1秒前",
+        },
+        ...
+    ],
+    "meta": {},
+    "links": {}
+}
+```
+
+### 帮助文档详细
++ 请求方式：GET
++ 请求地址：site-help/helps/{id={帮助文档ID}
++ 返回值：
+```
+{
+    'id': 1,
+    'category': {
+        'id': 1,
+        'name': "分类名",
+        'ico': "http://图片地址",
+        'desc': "分类简介",
+    },
+    'replies': {
+        'id': 1,
+        'user': {"id": 1, "username": "name", ...},
+        'content': "评论回复",
+        'reply': "回复内容",
+        'created_at': "1小时前",
+        'updated_at': "1分钟前",
+    },
+    'title': "标题",
+    'desc': "概述",
+    'thumbnail': "缩略图地址"
+    'content': "帮助文档内容"
+    'useful': 112, // 有用数
+    'created_at' "1小时前",
+    'updated_at': "1分钟前",
+}
+```
 
 ## 数据库
 ### 帮助分类表：site_help_categories
