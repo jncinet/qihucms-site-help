@@ -26,7 +26,7 @@ class CreateSiteHelpTables extends Migration
         Schema::create('site_helps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('site_help_category_id')->index()->comment('所属分类');
-            $table->string('title')->nullable()->comment('标题');
+            $table->string('title')->comment('标题');
             $table->string('desc')->nullable()->comment('概要');
             $table->string('thumbnail')->nullable()->comment('缩略图');
             $table->longText('content')->comment('内容');
