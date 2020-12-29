@@ -2,12 +2,12 @@
 
 namespace Qihucms\SiteHelp\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Controller;
 use Qihucms\SiteHelp\Models\SiteHelpCategory;
 use Qihucms\SiteHelp\Resources\HelpCategoryCollection;
 use Qihucms\SiteHelp\Resources\HelpCategory as HelpCategoryResource;
 
-class CategoryController extends ApiController
+class CategoryController extends Controller
 {
     /**
      * 所有分类

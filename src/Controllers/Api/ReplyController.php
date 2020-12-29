@@ -2,14 +2,15 @@
 
 namespace Qihucms\SiteHelp\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Qihucms\SiteHelp\Models\SiteHelpReply;
 use Qihucms\SiteHelp\Requests\ReplyRequest;
 use Qihucms\SiteHelp\Resources\HelpReply as HelpReplyResource;
 use Qihucms\SiteHelp\Resources\SimpleHelpReplyCollection;
 
-class ReplyController extends ApiController
+class ReplyController extends Controller
 {
     public function __construct()
     {
@@ -25,7 +26,7 @@ class ReplyController extends ApiController
     public function index(Request $request)
     {
         $limit = $request->get('limit', 15);
-        $result = SiteHelpReply::where('user_id', \Auth::id())->latest()->paginate($limit);
+        $result = SiteHelpReply::where('user_id', Auth::id())->latest()->paginate($limit);
 
         return new SimpleHelpReplyCollection($result);
     }
@@ -40,7 +41,7 @@ class ReplyController extends ApiController
     {
         $result = SiteHelpReply::create([
             'site_help_id' => $request->input('site_help_id'),
-            'user_id' => \Auth::id(),
+            'user_id' => Auth::id(),
             'content' => $request->input('content'),
             'status' => 0
         ]);
@@ -49,7 +50,7 @@ class ReplyController extends ApiController
             return new HelpReplyResource($result);
         }
 
-        return $this->jsonResponse(['发布失败'], '', 422);
+        return $this->jsonResponse([__('site-help::message.create_fail')], '', 422);
     }
 
     /**
@@ -75,13 +76,13 @@ class ReplyController extends ApiController
     public function update(ReplyRequest $request, $id)
     {
         $data = $request->only(['site_help_id', 'content']);
-        $result = SiteHelpReply::where('id', $id)->where('user_id', \Auth::id())->update($data);
+        $result = SiteHelpReply::where('id', $id)->where('user_id', Auth::id())->update($data);
 
         if ($result) {
             return $this->jsonResponse(['id' => $id]);
         }
 
-        return $this->jsonResponse(['更新失败'], '', 422);
+        return $this->jsonResponse([__('site-help::message.update_fail')], '', 422);
     }
 
     /**
@@ -92,10 +93,10 @@ class ReplyController extends ApiController
      */
     public function destroy($id)
     {
-        if (SiteHelpReply::where('user_id', \Auth::id())->where('id', $id)->delete()) {
+        if (SiteHelpReply::where('user_id', Auth::id())->where('id', $id)->delete()) {
             return $this->jsonResponse(['id' => $id]);
         }
 
-        return $this->jsonResponse(['删除失败'], '', 422);
+        return $this->jsonResponse([__('site-help::message.delete_fail')], '', 422);
     }
 }

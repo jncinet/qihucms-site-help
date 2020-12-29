@@ -2,13 +2,13 @@
 
 namespace Qihucms\SiteHelp\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Qihucms\SiteHelp\Models\SiteHelp;
 use Qihucms\SiteHelp\Resources\SimpleHelpCollection;
 use Qihucms\SiteHelp\Resources\Help as HelpResource;
 
-class HelpController extends ApiController
+class HelpController extends Controller
 {
     /**
      * 后台选择帮助文档
